@@ -10,6 +10,7 @@ describe("The test environment", function() {
   });
 });
 
-describe("Your specs...", function() {
-  // it ...
+describe("it should have the same players and parameters", function() {
+  var game = new Game();
+
 });
