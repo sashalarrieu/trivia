@@ -1,7 +1,3 @@
-
-//Any game can be replayed with the same parameters and players.
-
-
 exports = typeof window !== "undefined" && window !== null ? window : global;
 
 var input=0
@@ -163,7 +159,7 @@ function winGoldValue(min, max)
 
     }else{
 
-      console.log("Answer was correct!!!!");
+      console.log("Answer was corrent!!!!");
 
       purses[currentPlayer] += 1;
       console.log(players[currentPlayer] + " now has " +
@@ -193,12 +189,8 @@ function winGoldValue(min, max)
 
 var notAWinner = false;
 
-
-document.getElementById('test').addEventListener("click",startGame)
-
-function startGame(){
-
 var game = new Game();
+
 game.add('Chet');
 game.add('Pat');
 game.add('Sue');
@@ -220,7 +212,6 @@ do{
     notAWinner = game.wasCorrectlyAnswered();
   }
 
-<<<<<<< Updated upstream
 }while(notAWinner);
 }
 else{
@@ -228,7 +219,3 @@ else{
 }
 }
 
-=======
-}while(notAWinner)
-}
->>>>>>> Stashed changes
