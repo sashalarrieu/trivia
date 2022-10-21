@@ -13,31 +13,23 @@ exports.Game = function() {
 
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
+  var categories = ["Pop", "Science", "Sports", "Rock"];
+  var nextCategory = "";
 
   var didPlayerWin = function(){
     return !(purses[currentPlayer] == 6)
   };
 
   var currentCategory = function(){
-    if(places[currentPlayer] == 0)
-      return 'Pop';
-    if(places[currentPlayer] == 4)
-      return 'Pop';
-    if(places[currentPlayer] == 8)
-      return 'Pop';
-    if(places[currentPlayer] == 1)
-      return 'Science';
-    if(places[currentPlayer] == 5)
-      return 'Science';
-    if(places[currentPlayer] == 9)
-      return 'Science';
-    if(places[currentPlayer] == 2)
-      return 'Sports';
-    if(places[currentPlayer] == 6)
-      return 'Sports';
-    if(places[currentPlayer] == 10)
-      return 'Sports';
-    return 'Rock';
+    if (nextCategory != "")
+      return nextCategory;
+    if(places[currentPlayer] == 0 || places[currentPlayer] == 4 || places[currentPlayer] == 8)
+      return categories[0];
+    if(places[currentPlayer] == 1 || places[currentPlayer] == 5 || places[currentPlayer] == 9)
+      return categories[1];
+    if(places[currentPlayer] == 2 || places[currentPlayer] == 6 || places[currentPlayer] == 10)
+      return categories[2];
+    return categories[3];
   };
 
   this.createRockQuestion = function(index){
@@ -127,6 +119,8 @@ exports.Game = function() {
   };
 
   this.wasCorrectlyAnswered = function(){
+    nextCategory = "";
+
     if(inPenaltyBox[currentPlayer]){
       if(isGettingOutOfPenaltyBox){
         console.log('Answer was correct!!!!');
@@ -171,6 +165,15 @@ exports.Game = function() {
 		console.log('Question was incorrectly answered');
 		console.log(players[currentPlayer] + " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
+
+    nextCategory = Math.floor(Math.random()*categories.length-1);
+
+    // Saisie de la nouvelle categorie manuellement
+    // let newCat = ""
+    // while (categories.includes(newCat)) {
+    //   newCat = prompt("Please enter the next category: ");
+    // }
+    // nextCategory = newCat;
 
     currentPlayer += 1;
     if(currentPlayer == players.length)

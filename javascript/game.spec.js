@@ -51,4 +51,16 @@ describe("A player can be able to exit of prison only if he do a odd roll", func
   })
 });
 
+describe("A player can be able to exit of prison only if he do a odd roll", function() {
+  it("should walk in penality box", function() {
+    let game = new Game();
+    game.add('guilhem');
+
+    game.wrongAnswer();
+    game.wasCorrectlyAnswered();
+    game.roll(2);
+    expect(game.getInPenaltyBox()[game.getCurrentPlayer()]).toBe(true);
+  })
+});
+
 
