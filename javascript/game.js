@@ -1,5 +1,9 @@
 exports = typeof window !== "undefined" && window !== null ? window : global;
 
+var input=0
+
+
+
 exports.Game = function() {
   var players          = new Array();
   var places           = new Array(6);
@@ -14,8 +18,21 @@ exports.Game = function() {
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
 
+  
+
+
+
+
+
+
+function winGoldValue(min, max)
+{
+    
+ return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
   var didPlayerWin = function(){
-    return !(purses[currentPlayer] == 6)
+    return !(purses[currentPlayer] == input)
   };
 
   var currentCategory = function(){
@@ -177,9 +194,16 @@ var game = new Game();
 game.add('Chet');
 game.add('Pat');
 game.add('Sue');
+ 
 
+function getValue() {
+  notAWinner=false;
+  // Sélectionner l'élément input et récupérer sa valeur
+  input = document.getElementById("name").value;
+
+
+if(input>=6){
 do{
-
   game.roll(Math.floor(Math.random()*6) + 1);
 
   if(Math.floor(Math.random()*10) == 7){
@@ -189,3 +213,9 @@ do{
   }
 
 }while(notAWinner);
+}
+else{
+  console.log("value incorrect")
+}
+}
+
