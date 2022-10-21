@@ -24,6 +24,31 @@ describe("Players number", function() {
     game.add('Sasha');
     expect(game.isPlayable(game.howManyPlayers())).toBe(true);
   });
-
 });
+
+
+describe("A player can be able to exit of prison", function() {
+  it("should walk in penality box", function() {
+    let game = new Game();
+    game.add('guilhem');
+
+    game.wrongAnswer();
+    game.wasCorrectlyAnswered();
+    game.roll(3);
+    expect(game.getInPenaltyBox()[game.getCurrentPlayer()]).toBe(false);
+  })
+});
+
+describe("A player can be able to exit of prison only if he do a odd roll", function() {
+  it("should walk in penality box", function() {
+    let game = new Game();
+    game.add('guilhem');
+
+    game.wrongAnswer();
+    game.wasCorrectlyAnswered();
+    game.roll(2);
+    expect(game.getInPenaltyBox()[game.getCurrentPlayer()]).toBe(true);
+  })
+});
+
 

@@ -67,6 +67,14 @@ exports.Game = function() {
     return true;
   };
 
+  this.getInPenaltyBox = function(){
+    return inPenaltyBox;
+  };
+
+  this.getCurrentPlayer = function(){
+    return currentPlayer;
+  };
+
   this.howManyPlayers = function(){
     return players.length;
   };
@@ -90,6 +98,7 @@ exports.Game = function() {
     if(inPenaltyBox[currentPlayer]){
       if(roll % 2 != 0){
         isGettingOutOfPenaltyBox = true;
+        inPenaltyBox[currentPlayer] = false;
 
         console.log(players[currentPlayer] + " is getting out of the penalty box");
         places[currentPlayer] = places[currentPlayer] + roll;
@@ -176,16 +185,16 @@ var game = new Game();
 
 game.add('Chet');
 
-do{
-
-  if(!game.isPlayable()){
-    if(game.howManyPlayers() == 0){
-      game.add('Player 1');
-      game.add('Player 2');
-    }else{
-      game.add('Player 2');
-    }
+if(!game.isPlayable()){
+  if(game.howManyPlayers() == 0){
+    game.add('Player 1');
+    game.add('Player 2');
+  }else{
+    game.add('Player 2');
   }
+}
+
+do{
 
   game.roll(Math.floor(Math.random()*6) + 1);
 
