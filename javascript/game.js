@@ -175,10 +175,17 @@ var notAWinner = false;
 var game = new Game();
 
 game.add('Chet');
-game.add('Pat');
-game.add('Sue');
 
 do{
+
+  if(!game.isPlayable()){
+    if(game.howManyPlayers() == 0){
+      game.add('Player 1');
+      game.add('Player 2');
+    }else{
+      game.add('Player 2');
+    }
+  }
 
   game.roll(Math.floor(Math.random()*6) + 1);
 
